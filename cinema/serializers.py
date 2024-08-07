@@ -46,7 +46,10 @@ class MovieListSerializer(MovieSerializer):
         fields = ("id", "title", "description", "duration", "genres", "actors")
 
     def get_actors(self, obj):
-        return [f"{actor.first_name} {actor.last_name}" for actor in obj.actors.all()]
+        return [
+            f"{actor.first_name} {actor.last_name}"
+            for actor in obj.actors.all()
+        ]
 
 
 class MovieDetailSerializer(MovieSerializer):
@@ -75,7 +78,9 @@ class MovieSessionDetailSerializer(serializers.ModelSerializer):
 
     def get_taken_places(self, obj):
         tickets = obj.tickets.all()
-        return [{"row": ticket.row, "seat": ticket.seat} for ticket in tickets]
+        return [
+            {"row": ticket.row, "seat": ticket.seat} for ticket in tickets
+        ]
 
 
 class MovieSessionListSerializer(serializers.ModelSerializer):
